@@ -1,22 +1,34 @@
 find_monthly_payment = (principle,interest, term) => {
-    let monthly = principle*interest*(Math.pow(1+interest,term))/(Math.pow(1+interest,term) -1);
+    if(interest == 0) monthly = principle/term;
+    else monthly = principle*interest*(Math.pow(1+interest,term))/(Math.pow(1+interest,term) -1);
     return monthly
 }
 
 let arr = []
 find_monthly_interest = (principle,term,interest,monthly) => {
-    for(let i=1;i<=term*12;i++){
-        rate = principle / interest / 12;
-        payment_without_fee = monthly - rate;
-        principle = principle - payment_without_fee;
-        obj = { i, principle, rate, monthly}
-        arr.push(obj);
+    if(interest == 0){
+        for(let i=1;i<=term*12;i++){
+            rate = interest;
+            payment_without_fee = monthly - rate;
+            principle = principle - payment_without_fee;
+            obj = { i, principle, rate, monthly}
+            arr.push(obj);
+        }
+    }
+    else{    
+        for(let i=1;i<=term*12;i++){
+            rate = principle / interest / 12;
+            payment_without_fee = monthly - rate;
+            principle = principle - payment_without_fee;
+            obj = { i, principle, rate, monthly}
+            arr.push(obj);
+        }
     }
     return arr;
 }
 
 let principle = 1000
-let interest = 10
+let interest = 0
 let term = 1
 
 

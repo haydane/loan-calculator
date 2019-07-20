@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyPaser = require('body-parser');
-const loanRouter = require('./routes/loanRoute');
+const loanRouter = require('./routes/loanRouter');
 
 const app = express();
 

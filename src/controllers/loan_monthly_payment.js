@@ -1,4 +1,5 @@
 find_monthly_payment = (principle,interest, term) => {
+    
 
     if(principle != 0 || term !=0)
     {

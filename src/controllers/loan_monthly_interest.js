@@ -1,5 +1,7 @@
 find_monthly_interest = (principle,term,interest,monthly) => {
     arr = []
+
+
     if(interest == 0){
         for(let month=1;month<=term*12;month++){
             rate = interest;

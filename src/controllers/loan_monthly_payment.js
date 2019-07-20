@@ -14,7 +14,6 @@ find_monthly_payment = (principle,interest, term) => {
     }
 }
 
-
 module.exports = {
     find_monthly_payment
 }

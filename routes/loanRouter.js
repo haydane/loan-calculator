@@ -2,6 +2,7 @@ const express = require('express');
 const { status200, status400 } =  require('../api/header');
 const { find_monthly_payment } = require('../src/controllers/loan_monthly_payment');
 const { find_monthly_interest } = require('../src/controllers/loan_monthly_interest');
+const { find_negative_number } = require('../src/controllers/find_negative_number');
 const router = express.Router()
 
 router.post('/getMonthlyPayment', (req,res) => {
@@ -11,7 +12,12 @@ router.post('/getMonthlyPayment', (req,res) => {
         res.status(200).json({
             header: status200,
             body: {
-                'monthly payment: ': find_monthly_payment(principle,interest,term).toFixed(2)
+                detail: {
+                    'loan amount': principle,
+                    'year': term,
+                    'rate': interest,
+                },
+                loan_summary: find_monthly_payment(principle,interest,term).toFixed(2),
             }
         });
         
@@ -34,7 +40,12 @@ router.post('/getMonthlyInterest', (req,res) => {
         res.status(200).json({
             header: status200,
             body: {
-                'monthly payment: ': find_monthly_interest(principle,term,interest,monthly)
+                detail: {
+                    'loan amount': principle,
+                    'year': term,
+                    'rate': interest,
+                },
+                loan_summary:find_monthly_interest(principle,term,interest,monthly)
             }
         });
         

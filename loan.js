@@ -4,8 +4,8 @@ find_monthly_payment = (principle,interest, term) => {
     return monthly
 }
 
-let arr = []
 find_monthly_interest = (principle,term,interest,monthly) => {
+    arr = []
     if(interest == 0){
         for(let i=1;i<=term*12;i++){
             rate = interest;
@@ -28,7 +28,7 @@ find_monthly_interest = (principle,term,interest,monthly) => {
 }
 
 let principle = 1000
-let interest = 0
+let interest = 10
 let term = 1
 
 
@@ -47,3 +47,7 @@ console.log(`\n\nAmount of the Loan: ${principle}
              Annual interest rate: ${interest}% 
              Term of the mortgage loan: ${term*12} Months
              Monthly Payment: ${monthy_payment.toFixed(2)}`)
+
+module.exports = {
+    find_monthly_interest
+}

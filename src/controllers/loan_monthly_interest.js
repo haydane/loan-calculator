@@ -1,8 +1,8 @@
-find_monthly_interest = (principle,term,interest,monthly,start_date) => {
+find_monthly_interest = (principle,term, number_of_month,interest,monthly,start_date) => {
     arr = []
     weekday = ['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     start = new Date(start_date);
-    for(let month =1 ; month <= term*12 ; month++){
+    for(let month =1 ; month <= term*12 + parseInt(number_of_month) ; month++){
         rate = principle / interest / 12
         payment_without_fee =  monthly - rate
         principle = principle - payment_without_fee

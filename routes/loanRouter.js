@@ -43,6 +43,7 @@ router.post('/getMonthlyInterest', (req,res) => {
                 detail: {
                     'loan_amount': principle,
                     'year': term,
+                    'month': parseInt(month).toString(),
                     'rate': interest,
                     'start_date': start_date,
                 },

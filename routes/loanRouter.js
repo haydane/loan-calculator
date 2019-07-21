@@ -3,6 +3,8 @@ const { status200, status400 } =  require('../api/header');
 const { find_monthly_payment } = require('../src/controllers/loan_monthly_payment');
 const { find_monthly_interest } = require('../src/controllers/loan_monthly_interest');
 const { find_negative_number } = require('../src/controllers/find_negative_number');
+const { find_total_interest } = require('../src/controllers/find_total_interest');
+const { find_total_payment } = require('../src/controllers/find_total_payment');
 const { weekday,months } = require('../src/controllers/date_format');
 const router = express.Router()
 
@@ -49,6 +51,9 @@ router.post('/getMonthlyInterest', (req,res) => {
                     'year': term.toString(),
                     'month': parseInt(month).toString(),
                     'rate': parseFloat(interest).toString(),
+                    'monthly_payment': parseFloat(monthly).toFixed(2),
+                    'total_interest': parseFloat(find_total_interest(principle,term, month ,interest,monthly)).toFixed(2),
+                    'total_payment': parseFloat(find_total_payment(monthly,term,month)).toFixed(2),
                     'start_date': weekday[start_date.getDay()] + ', ' + start_date.getDate() + ' ' + months[start_date.getMonth()] + ' ' + start_date.getFullYear()
                 },
                 loan_summary:find_monthly_interest(principle,term, month ,interest,monthly,start_date)

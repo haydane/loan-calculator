@@ -6,5 +6,6 @@ status400 = {
 }
 
 module.exports ={
-    status200,status400
+    status200,
+    status400
 }

@@ -13,7 +13,7 @@ router.post('/getMonthlyPayment', (req,res) => {
             header: status200,
             body: {
                 detail: {
-                    'loan amount': principle,
+                    'loan_amount': principle,
                     'year': term,
                     'rate': interest,
                 },
@@ -33,19 +33,20 @@ router.post('/getMonthlyPayment', (req,res) => {
 
 router.post('/getMonthlyInterest', (req,res) => {
 
-    let { principle = 0 ,interest = 0, term  } = req.body;
+    let { principle = 0 ,interest = 0, term, start_date = new Date().toLocaleDateString() } = req.body;
 
-    let monthly = find_monthly_payment(principle,interest,term)
+    let monthly = find_monthly_payment(principle,interest,term);
     try {
         res.status(200).json({
             header: status200,
             body: {
                 detail: {
-                    'loan amount': principle,
+                    'loan_amount': principle,
                     'year': term,
                     'rate': interest,
+                    'start_date': start_date,
                 },
-                loan_summary:find_monthly_interest(principle,term,interest,monthly)
+                loan_summary:find_monthly_interest(principle,term,interest,monthly,start_date)
             }
         });
         

@@ -33,19 +33,20 @@ router.post('/getMonthlyPayment', (req,res) => {
 
 router.post('/getMonthlyInterest', (req,res) => {
 
-    let { principle = 0 ,interest = 0, term = 0, month = 0 , start_date = new Date().toLocaleDateString() } = req.body;
+    let { principle = 0 ,interest = 0, term = 0, month = 0 , start_date = new Date() } = req.body;
 
-    let monthly = find_monthly_payment(principle,interest,term, month);
+    let monthly = find_monthly_payment(Number.parseFloat(principle),Number.parseFloat(interest),term, month);
+    console.log(Number.parseFloat(interest));
     try {
         res.status(200).json({
             header: status200,
             body: {
                 detail: {
-                    'loan_amount': principle,
+                    'loan_amount': parseFloat(principle).toString(),
                     'year': term.toString(),
                     'month': parseInt(month).toString(),
-                    'rate': interest,
-                    'start_date': start_date,
+                    'rate': parseFloat(interest).toString(),
+                    'start_date': new Date(start_date).toLocaleDateString(),
                 },
                 loan_summary:find_monthly_interest(principle,term, month ,interest,monthly,start_date)
             }

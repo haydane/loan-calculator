@@ -3,8 +3,9 @@ find_monthly_interest = (principle,term, number_of_month,interest,monthly,start_
     weekday = ['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     start = new Date(start_date);
     for(let month =1 ; month <= term*12 + parseInt(number_of_month) ; month++){
-        rate = principle / interest / 12
-        payment_without_fee =  monthly - rate
+        monthly_rate = interest == 0 ? 0 :  interest / 12
+        rate = monthly_rate * principle /100
+        payment_without_fee =  monthly - parseFloat(rate)
         principle = principle - payment_without_fee
         obj = { 'month' : month, 
                 'principle': payment_without_fee.toFixed(2),
@@ -18,4 +19,4 @@ find_monthly_interest = (principle,term, number_of_month,interest,monthly,start_
     return arr;
 }
 
-module.exports =  { find_monthly_interest }
+module.exports =  { find_monthly_interest } 

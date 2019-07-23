@@ -1,11 +1,11 @@
 status200 = {
-    'status': true, 'Content-Type': 'application/javascript',
+    'status': true, 'Content-Type': 'application/x-www-form-urlencoded', 'timestamp': Date.now()
 }
 status400 = {
-    'status': false, 'content-type': 'application/javascript',  'msg': 'bad request'
+    'status': false, 'Content-Type': 'application/x-www-form-urlencoded',  'msg': 'bad request', 'timestamp': Date.now()
 }
 
-module.exports ={
+module.exports = {
     status200,
     status400
 }

@@ -5,7 +5,7 @@ find_total_interest = (principle,term, number_of_month,interest,monthly) => {
         rate = monthly_rate * principle /100;
         total_interest = total_interest + rate;
         payment_without_fee =  monthly - parseFloat(rate);
-        principle = principle - payment_without_fee;
+        principle = parseFloat(principle - payment_without_fee).toFixed(2);
     }
     return total_interest;
 }

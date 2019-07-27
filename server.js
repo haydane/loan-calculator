@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyPaser = require('body-parser');
 const loanRouter = require('./routes/loanRouter');
+const swaggerUi = require('swagger-ui-express'), swaggerDocument = require('./api/swagger/swagger.json');
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(bodyPaser.json());
 
 
 // route
+app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerDocument));
 app.get('/',(req,res) => {
     res.send('hello');
 });

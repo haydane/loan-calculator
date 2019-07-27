@@ -1,0 +1,68 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "1.0.0",
+		"title": "SmartLoan",
+		"description": "Loaning and Taxing API"
+	},
+	"host": "localhost:3000",
+	"basePath": "/api",
+	"tags": [
+		{
+			"name": "Loan",
+			"description": "Operations about Loan"
+		}
+	],
+	"schemes": ["http", "https"],
+	"paths": {
+		"/getMonthlyInterest/": {
+			"post": {
+				"tags": ["Loan"],
+				"summary": "Calculate Loan",
+				"description": "",
+				"consumes": ["application/json"],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"principle": {
+									"type": "number",
+									"format": "float"
+								},
+								"interest": {
+									"type": "number",
+									"format": "float"
+								},
+								"term": {
+									"type": "integer",
+									"format": "int64"
+								},
+								"month": {
+									"type": "integer",
+									"format": "int64"
+								},
+								"start_date": {
+									"type": "string",
+									"format": "date"
+								}
+							}
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "successful operation"
+					},
+					"400": {
+						"description": "invalid input variables"
+					}
+				}
+			}
+        }
+    }
+}

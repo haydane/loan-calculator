@@ -10,7 +10,7 @@ var port = 3000 | process.env.port;
 // parse application/x-www-form-urlencoded
 app.use(bodyPaser.urlencoded({ extended: false }));
 // parse application/json
-app.use(bodyPaser.json());
+app.use(bodyPaser.json());  
 
 
 // route
@@ -19,8 +19,14 @@ app.get('/',(req,res) => {
     res.send('hello');
 });
 app.use('/api', loanRouter);
-
-
+app.post('/testpost', (req,res) => {
+    let { name } = req.body;
+    res.status(200).json({
+        body: {
+            'name': name + " plus",
+        }
+    });
+})
 app.listen(port, () => {
     console.log(`server is listening on port ${port}`);
 });

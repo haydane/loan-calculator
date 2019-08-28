@@ -15,9 +15,6 @@ app.use(bodyPaser.json());
 
 // route
 app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerDocument));
-app.get('/',(req,res) => {
-    res.send('hello');
-});
 app.use('/api', loanRouter);
 app.post('/testpost', (req,res) => {
     let { name } = req.body;
